@@ -40,8 +40,6 @@ public class Main {
     public static void printDiamond(int size) {
         int i = 1;
         int j = 1;
-
-//        This part is similar to printing the triangle
         while (i <= size) {
             printSpaces(size - i);
             printX(i);
@@ -84,6 +82,7 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
 //        Using booleans to allow the prompts to reemerge at each stage in case the user types in an incorrect input
         boolean showPrompt1 = true;
         boolean showPrompt2 = true;
@@ -91,12 +90,15 @@ public class Main {
             showPrompt1 = false;
             System.out.println("What shape would you like to print?");
             String shape = scanner.nextLine();
+
 //            If user inputs correct shape, show the second prompt, else show the first prompt again by resetting boolean value to true.
             if (isAShape(shape)) {
                 while (showPrompt2) {
                     showPrompt2 = false;
-                    System.out.println("How tall should the shape be? (must be greater than 1 and less than 100)");
+                    System.out.println("How tall should the shape be? (must be between 2 and 99)");
                     String sizeString = scanner.nextLine();
+
+//                    Check to see if the user input is within the correct range (2-99) -- if yes, print shape, else show prompt 2 again.
                     if (isCorrectSize(sizeString)) {
                         int size = Integer.parseInt(sizeString);
                         switch (shape) {
@@ -111,7 +113,7 @@ public class Main {
                                 break;
                         }
                     } else {
-                        System.out.println("Invalid input. Please ensure that the input is an integer between 3 and 99");
+                        System.out.println("Invalid input. Please ensure that the input is an integer between 2 and 99");
                         showPrompt2 = true;
                     }
                 }
